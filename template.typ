@@ -1,3 +1,6 @@
+#import "@preview/lucide:0.1.0": *
+
+
 // COLORS
 #let colors = (
   primary: rgb("#0f766e"),
@@ -8,6 +11,54 @@
   cover-bg: rgb("#0F172A"),
 )
 
+// FUNCTIONS
+#let remarkable(body) = {
+  align(center)[
+    #block(
+      stroke: 1pt + colors.primary,
+      radius: 4pt,
+      inset: (x: 1.5em, y: 1em),
+      fill: colors.primary.transparentize(95%),
+    )[
+      #align(left)[#body]
+    ]
+  ]
+}
+
+#let example(body) = {
+  v(0.5em)
+  box(
+    stroke: 1pt + colors.primary, // Viền cam mỏng
+    radius: 2pt, // Bo góc nhỏ
+    inset: (x: 6pt, y: 0pt), // Lề chữ bên trong (ngang)
+    outset: (y: 6pt), // Mở rộng nền theo chiều dọc mà không đẩy giãn khoảng cách dòng
+    baseline: 0%, // Căn chỉnh chân chữ cho bằng với văn bản bên ngoài
+  )[
+    // Chữ bên trong nhỏ hơn một chút và in đậm
+    #text(fill: colors.primary, weight: "semibold", body)
+  ]
+  h(4pt)
+}
+
+#let flexgrid(
+  cols: 2, // Số cột mặc định (có thể truyền số nguyên hoặc mảng 1fr)
+  col-gap: 4em, // Khoảng cách giữa các cột
+  row-gap: 1.5em, // Khoảng cách giữa các dòng
+  alignment: horizon, // Căn lề nội dung trong ô
+  ..cells, // Chứa toàn bộ nội dung các ô được truyền vào
+) = {
+  grid(
+    columns: cols,
+    column-gutter: col-gap,
+    row-gutter: row-gap,
+    align: alignment,
+    ..cells
+  )
+}
+
+#let dfrac(a, b) = math.display(math.frac(a, b))
+
+// COVER
 #let packt_math_cover(
   title: "TOÁN 12",
   subtitle: "Ôn luyện cho kì thi tốt nghiệp THPT 2027",
@@ -107,18 +158,18 @@
       let page_num = counter(page).get().first()
       let is_odd = calc.odd(page_num) // Kiểm tra trang lẻ
 
-      let header_text = text(13pt, fill: colors.primary)[#title]
-      let divider = line(length: 100%, stroke: 0.5pt + colors.text-muted)
+      let header_text = text(10pt, fill: colors.primary)[#title]
+      let divider = line(length: 100%, stroke: 0.5pt + colors.primary)
 
       if is_odd {
         // Trang lẻ (bìa phải sách): Căn lề ngoài (right)
         align(right)[#header_text]
-        v(-0.8em)
+        v(-1.75em)
         divider
       } else {
         // Trang chẵn (bìa trái sách): Căn lề ngoài (left)
         align(left)[#header_text]
-        v(-0.8em)
+        v(-1.75em)
         divider
       }
     },
@@ -145,13 +196,13 @@
 
   set text(font: "Times New Roman", size: 13pt, lang: "vi", fallback: true)
 
-  set par(justify: true, leading: 0.8em, spacing: 1.2em)
+  set par(justify: true, leading: 0.8em, spacing: 2em)
 
   set heading(numbering: "1.1.")
   show heading: it => {
     pad(
-      top: 0em,
-      bottom: 0em,
+      top: 1em,
+      bottom: 0.5em,
       text(fill: colors.primary, it),
     )
   }
@@ -159,6 +210,7 @@
   set enum(indent: 1em)
   set math.cases(gap: 1em)
 
+  set list(marker: box(baseline: 15%)[#lucide-icon("chevron-right", fill: colors.primary, size: 0.9em)])
   //
   // pagebreak()
   //
