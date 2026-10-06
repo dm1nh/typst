@@ -1,5 +1,7 @@
-#import "@preview/lucide:0.1.0": *
-
+#import "@preview/lucide:0.1.0": lucide-icon
+#import "@preview/cetz:0.5.2" as cetz
+#import "@preview/sang-math:1.1.0" as sm
+#import "@preview/cetz-plot:0.1.4": plot
 
 // COLORS
 #let colors = (
@@ -12,7 +14,7 @@
 )
 
 // FUNCTIONS
-#let remarkable(body) = {
+#let note(body) = {
   align(center)[
     #block(
       stroke: 1pt + colors.primary,
@@ -25,28 +27,56 @@
   ]
 }
 
-#let example(body) = {
-  v(0.5em)
+#let section(body) = {
+  box(baseline: 15%)[#lucide-icon("layout-dashboard", fill: colors.primary, size: 0.9em)]
+  h(4pt)
+  text(fill: colors.primary, weight: "semibold", body)
+}
+
+#let remark(body: none) = {
+  v(0.25em)
+  box(
+    radius: 2pt, // Bo góc nhỏ
+    inset: (x: 5pt, y: 0pt), // Lề chữ bên trong (ngang)
+    outset: (y: 5pt), // Mở rộng nền theo chiều dọc mà không đẩy giãn khoảng cách dòng
+    baseline: 0%, // Căn chỉnh chân chữ cho bằng với văn bản bên ngoài
+    fill: colors.primary,
+  )[
+    // Chữ bên trong nhỏ hơn một chút và in đậm
+    #text(fill: white, size: 0.9em, weight: "semibold", [#if body != none [#body] else [Remark]])
+  ]
+  h(2pt)
+}
+
+#let example_counter = counter("example")
+#let example(title: none, body) = {
+  example_counter.step()
+  v(0.25em)
   box(
     stroke: 1pt + colors.primary, // Viền cam mỏng
     radius: 2pt, // Bo góc nhỏ
-    inset: (x: 6pt, y: 0pt), // Lề chữ bên trong (ngang)
-    outset: (y: 6pt), // Mở rộng nền theo chiều dọc mà không đẩy giãn khoảng cách dòng
+    inset: (x: 5pt, y: 0pt), // Lề chữ bên trong (ngang)
+    outset: (y: 5pt), // Mở rộng nền theo chiều dọc mà không đẩy giãn khoảng cách dòng
     baseline: 0%, // Căn chỉnh chân chữ cho bằng với văn bản bên ngoài
   )[
     // Chữ bên trong nhỏ hơn một chút và in đậm
-    #text(fill: colors.primary, weight: "semibold", body)
+    #text(fill: colors.primary, size: 0.9em, weight: "semibold", context [
+      Ví dụ #example_counter.display()
+      #if title != none [#title]
+    ])
   ]
-  h(4pt)
+  h(6pt)
+  [#body]
 }
 
 #let flexgrid(
   cols: 2, // Số cột mặc định (có thể truyền số nguyên hoặc mảng 1fr)
-  col-gap: 4em, // Khoảng cách giữa các cột
+  col-gap: 3em, // Khoảng cách giữa các cột
   row-gap: 1.5em, // Khoảng cách giữa các dòng
   alignment: horizon, // Căn lề nội dung trong ô
   ..cells, // Chứa toàn bộ nội dung các ô được truyền vào
 ) = {
+  v(-0.5em)
   grid(
     columns: cols,
     column-gutter: col-gap,
@@ -59,7 +89,7 @@
 #let dfrac(a, b) = math.display(math.frac(a, b))
 
 // COVER
-#let packt_math_cover(
+#let book_cover(
   title: "TOÁN 12",
   subtitle: "Ôn luyện cho kì thi tốt nghiệp THPT 2027",
   author: "Ngô Đăng Minh",
@@ -148,8 +178,6 @@
 ) = {
   set document(title: title, author: author)
 
-  packt_math_cover()
-
   set page(
     paper: "a4",
     margin: (inside: 2cm, outside: 1cm, top: 2.5cm, bottom: 2.5cm),
@@ -198,7 +226,18 @@
 
   set par(justify: true, leading: 0.8em, spacing: 2em)
 
-  set heading(numbering: "1.1.")
+  set heading(numbering: (..nums) => {
+    let n = nums.pos() // Lấy mảng các cấp số hiện tại
+
+    if n.len() == 1 {
+      // Heading cấp 1 (=): Hiển thị A, B, C...
+      return numbering("A.", ..n)
+    } else {
+      // Heading cấp 2, 3, 4 (==, ===): Bỏ qua cấp 1 (A), chỉ lấy từ cấp 2
+      // Lệnh slice(1) sẽ cắt bỏ phần tử đầu tiên của mảng
+      return numbering("1.1.", ..n.slice(1))
+    }
+  })
   show heading: it => {
     pad(
       top: 1em,

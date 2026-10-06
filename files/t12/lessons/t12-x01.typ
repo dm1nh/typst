@@ -1,18 +1,15 @@
-#import "/template.typ": colors, dfrac, example, flexgrid, remarkable, template
-#import "@preview/cetz:0.5.2"
-#import "@preview/sang-math:1.1.0": tln, tn
-#import "@preview/cetz-plot:0.1.4": plot
+#import "/template.typ": cetz, colors, dfrac, example, flexgrid, note, plot, remark, section, template
 
 #show: template.with(
-  title: "Bổ trợ kiến thức nền tảng trước lớp 12",
+  title: "Nền tảng về Đại số và biến đổi đại số",
   date: "05/10/2026",
 )
 
-= Đại số và biến đổi đại số cơ bản
+= KIẾN THỨC NỀN TẢNG
 
 == Các hằng đẳng thức đáng nhớ
 
-#remarkable[
+#note[
   #grid(
     columns: 2,
     row-gutter: 1em,
@@ -28,7 +25,7 @@
   )
 ]
 
-#example[Ví dụ] Sử dụng hằng đẳng thức, khai triển các biểu thức sau
+#example[Sử dụng hằng đẳng thức, khai triển các biểu thức sau]
 #flexgrid(
   cols: 5,
   col-gap: 3em,
@@ -47,7 +44,7 @@
 == Biểu thức. Đa thức. Thu gọn biểu thức.
 
 === Biểu thức. Đa thức.
-#remarkable[
+#note[
   - Biểu thức là tổ hợp hữu hạn các ký hiệu (số, biến, phép toán, dấu ngoặc) được viết đúng quy tắc ngữ cảnh để biểu diễn một phép tính hoặc mối quan hệ giữa các đại lượng.
   - Giá trị của biểu thức là kết quả nhận được sau khi thay số cụ thể vào biến (nếu có).
   - Đa thức là tổng của những đơn thức; mỗi đơn thức trong tổng được gọi là một hạng tử của đa thức đó.
@@ -58,7 +55,7 @@
 
 #pagebreak()
 
-#example[Ví dụ 1] Trong các biểu thức dưới đây, biểu thức nào là đa thức và cho biết bậc của chúng?
+#example[Trong các biểu thức dưới đây, biểu thức nào là đa thức và cho biết bậc của chúng?]
 
 #flexgrid(
   cols: 3,
@@ -70,7 +67,7 @@
   [6) $x^2 - x sqrt(x) + 8x$],
 )
 
-#example[Ví dụ 2] Thu gọn các biểu thức sau
+#example[Thu gọn các biểu thức sau]
 
 #flexgrid(
   cols: 2,
@@ -86,22 +83,22 @@
 
 === Nghiệm của đa thức
 
-#remarkable[
+#note[
   - Nghiệm của đa thức một biến $f(x)$ là tập hợp những giá trị của biến $x$ thỏa mãn $f(x) = 0$.
 ]
 
-#example[Ví dụ 3] Nghiệm của đa thức bậc hai $f(x) = x^2 - 3x + 2$ là $x_1 = 1$ và $x_2 = 2$.
+#example[Nghiệm của đa thức bậc hai $f(x) = x^2 - 3x + 2$ là $x_1 = 1$ và $x_2 = 2$.]
 
 === Điều kiện xác định của một biểu thức
 
-#remarkable[
+#note[
   - Điều kiện xác định (ĐKXĐ) của biểu thức là tập hợp các giá trị của biến số để biểu thức có nghĩa (tính được kết quả trong tập hợp số thực).
   - Các quy tắc tìm điều kiện xác định của biểu thức thường gặp trước lớp 11:
     + Phân thức chứa ẩn ở mẫu dạng $dfrac(A(x), B(x))$ thì mẫu $B(x)$ phải khác 0.
     + Căn bậc chẵn dạng $sqrt(A(x))$ thì $A(x) >= 0$.
 ]
 
-#example[Ví dụ 4] Tìm điều kiện xác định của các biểu thức sau
+#example[Tìm điều kiện xác định của các biểu thức sau]
 
 #flexgrid(
   cols: 3,
@@ -117,7 +114,7 @@
 
 === Phương trình bậc nhất một ẩn
 
-#remarkable[
+#note[
   Phương trình bậc nhất một ẩn có dạng $a x + b = 0$ ($a eq.not 0$) có nghiệm duy nhất là $x = dfrac(-b, a)$
 ]
 
@@ -133,7 +130,7 @@
 
 === Phương trình bậc hai một ẩn
 
-#remarkable[
+#note[
   - Phương trình bậc hai một ẩn có dạng $a x^2 + b x + c = 0$ ($a eq.not 0$).
   - Các bước giải phương trình bậc hai một ẩn:
     + Xác định các hệ số a, b, c.
@@ -145,7 +142,7 @@
       #h(4em)$x_1 = dfrac(-b + sqrt(Delta), 2a)$; $x_2 = dfrac(-b - sqrt(Delta), 2a)$.
 ]
 
-#example[Ví dụ 2] Giải các phương trình sau
+#example[Giải các phương trình sau]
 #flexgrid(
   cols: 3,
   [1) $x^2 - 2x + 3 = 0$],
@@ -158,7 +155,7 @@
 
 === Hệ phương trình bậc nhất hai ẩn và ba ẩn
 
-#example[Ví dụ 3] Giải các hệ phương trình sau
+#example[Giải các hệ phương trình sau]
 
 #flexgrid(
   [1) $display(cases(2x - y = 5, x + 3y = -2))$],
@@ -167,7 +164,7 @@
 
 === Bất phương trình bậc nhất một ẩn
 
-#remarkable[
+#note[
   - Bất phương trình bậc nhất một ẩn có dạng $a x + b > 0$ ($a eq.not 0$).
   - Áp dụng tính chất của bất đẳng thức để giải bất phương trình bậc nhất một ẩn:
     + Bất phương trình giữ nguyên chiều khi cộng trừ cả hai vế với một số $a$.
@@ -175,16 +172,153 @@
     + Bất phương trình đổi chiều khi lấy nghịch đảo cả hai vế.
 ]
 
-#example[Ví dụ 4] Giải các bất phương trình sau
+#example[Giải các bất phương trình sau]
 
 #flexgrid(
   [1) $-3x - 5 < 2x + 3$],
   [2) $dfrac(x - 2, 3) + dfrac(3 -x, 4) < 4$],
 )
 
+== Tập hợp. Khoảng - Nửa Khoảng - Đoạn.
+
+=== Tập hợp
+
+#note[
+  - Có hai cách cho tập hợp: Liệt kê các phần tử và chỉ ra tính chất đặc trưng của các phần tử.
+  - Mỗi phần tử trong tập hợp chỉ được liệt kê duy nhất một lần. Nếu một phần tử thuộc tập hợp thì được kí hiệu $x in A$.
+  - Tập hợp không có phần tử nào được gọi là tập rỗng, kí hiệu $emptyset$.
+  - Nếu mọi phần tử của tập hợp $A$ đều là phần tử của tập hợp $B$ thì gọi $A$ là tập con của $B$, kí hiệu $A subset B$.
+  - Người ta thường minh họa tập hợp bằng sơ đồ Venn.
+  - Hai tập hợp bằng nhau có cùng phần tử, kí hiệu $A = B$.
+]
+
+#example[Cho hai tập hợp $A$ gồm các số nguyên lớn hơn $-3$ và nhỏ hơn $5$. Viết tập $A$ dưới hai dạng.]
+
+#section[Khoảng. Nửa khoảng. Đoạn.]
+
+#let draw-line(
+  hatch-l: none,
+  hatch-r: none,
+  type-l: none,
+  type-r: none,
+  label-l: none,
+  label-r: none,
+  zero: false,
+) = cetz.canvas({
+  import cetz.draw: *
+
+  // Đường trục chính
+  line((0, 0), (6.5, 0), mark: (end: ">", fill: black))
+
+  // Hàm vẽ các nét gạch chéo (hatch)
+  let draw-hatch-slant(start, end) = {
+    let step = 0.12
+    let n = int((end - start) / step)
+    for i in range(n + 1) {
+      let x = start + i * step
+      if x <= end {
+        // Vẽ vạch chéo từ dưới lên trên, nghiêng sang phải
+        line((x - 0.1, -0.15), (x + 0.1, 0.15), stroke: 0.6pt + red)
+      }
+    }
+  }
+
+  // Vẽ vùng gạch chéo bên trái và phải
+  if hatch-l != none {
+    draw-hatch-slant(0.1, hatch-l - 0.1)
+  }
+  if hatch-r != none {
+    draw-hatch-slant(hatch-r + 0.1, 6.3)
+  }
+
+  // Vẽ ngoặc và nhãn bên trái
+  if type-l != none {
+    // Dùng box có nền để ngoặc che đi các nét gạch chéo/trục ngang phía sau nó
+    content((hatch-l, 0), $#text(fill: colors.primary, size: 14pt, type-l)$)
+    content((hatch-l, -0.45), text(fill: colors.text)[$#label-l$])
+  }
+
+  // Vẽ ngoặc và nhãn bên phải
+  if type-r != none {
+    content((hatch-r, 0), $#text(fill: colors.primary, size: 14pt, type-r)$)
+    content((hatch-r, -0.45), text(fill: colors.text)[$#label-r$])
+  }
+
+  // Vẽ điểm 0 (dành cho R)
+  if zero {
+    line((3.25, -0.15), (3.25, 0.15), stroke: 0.8pt)
+    content((3.25, -0.45), text(fill: colors.text)[$0$])
+  }
+})
+
+// ==========================================
+// BỐ CỤC CHÍNH BẢNG TẬP HỢP
+// ==========================================
+#align(center)[
+  #align(left)[
+    #grid(
+      columns: (auto, 1fr),
+      row-gutter: 1.5em,
+      column-gutter: 1em,
+      align: (left, left + horizon),
+
+      // --- 1. Khoảng ---
+      grid.cell(colspan: 2, text(fill: colors.primary, size: 13pt)[$bullet$ _Khoảng_]),
+
+      [$ (a; b) = \{ x in RR | a < x < b \} $],
+      draw-line(hatch-l: 2.5, hatch-r: 4.5, type-l: "(", type-r: ")", label-l: "a", label-r: "b"),
+
+      [$ (a; +oo) = \{ x in RR | x > a \} $],
+      draw-line(hatch-l: 2.5, type-l: "(", label-l: "a"),
+
+      [$ (-oo; b) = \{ x in RR | x < b \} $],
+      draw-line(hatch-r: 4.5, type-r: ")", label-r: "b"),
+
+      [$ (-oo; +oo) $],
+      draw-line(zero: true),
+
+      // --- 2. Đoạn ---
+      grid.cell(colspan: 2, text(fill: colors.primary, size: 13pt)[$bullet$ _Đoạn_]),
+
+      [$ [a; b] = \{ x in RR | a <= x <= b \} $],
+      draw-line(hatch-l: 2.5, hatch-r: 4.5, type-l: "[", type-r: "]", label-l: "a", label-r: "b"),
+
+      // --- 3. Nửa khoảng ---
+      grid.cell(colspan: 2, text(fill: colors.primary, size: 13pt)[$bullet$ _Nửa khoảng_]),
+
+      [$ [a; b) = \{ x in RR | a <= x < b \} $],
+      draw-line(hatch-l: 2.5, hatch-r: 4.5, type-l: "[", type-r: ")", label-l: "a", label-r: "b"),
+
+      [$ (a; b] = \{ x in RR | a < x <= b \} $],
+      draw-line(hatch-l: 2.5, hatch-r: 4.5, type-l: "(", type-r: "]", label-l: "a", label-r: "b"),
+
+      [$ [a; +oo) = \{ x in RR | x >= a \} $],
+      draw-line(hatch-l: 2.5, type-l: "[", label-l: "a"),
+
+      [$ (-oo; b] = \{ x in RR | x <= b \} $],
+      draw-line(hatch-r: 4.5, type-r: "]", label-r: "b"),
+    )
+  ]
+]
+
+== Các phép toán trong tập hợp
+
+#note[
+  - Tập hợp các phần tử thuộc cả hai tập $A$ và $B$ được gọi là *giao* của $A$ và $B$, kí hiệu $A inter B$.
+  - Tập hợp các phần tử thuộc tập $A$ hoặc thuộc tập $B$ được gọi là *hợp*, kí hiệu $A union B$.
+  - Tập hợp các phần tử thuộc tập $A$ nhưng không thuộc tập $B$, kí hiệu $A \\ B$.
+  - Nếu tập $A$ là tập con của tập $S$, tập hợp các phần tử thuộc $S$ nhưng không thuộc $A$ được gọi là phần bù của $A$ trong $S$, kí hiệu $C_S A$
+]
+
+#example[Tìm các tập hợp $A union B$, $A inter B$, $A \\ B$, $B \\ A$, $C_RR A$ của hai tập hợp $A$ và $B$]
+#flexgrid(
+  [1) $A = [-2, 3)$ và $B = (-3, +infinity)$],
+  [2) $A = {x in RR | x < 1}$ và $B = {x in RR | x >= -3}$]
+)
+
 == Hàm số cơ bản
 
-#remarkable[
+#note[
   - Hàm số là một quy tắc toán học liên kết mỗi giá trị của một biến độc lập (thường gọi là $x$) với đúng một giá trị tương ứng của biến phụ thuộc (thường gọi là $y$) trên tập $RR$.
   - Hàm số có kí hiệu: $y = f(x)$
   - $x$ được gọi là biến, $y$ là hàm số theo biến $x$.
@@ -193,9 +327,28 @@
   - Đồ thị hàm số $y = f(x)$ xác định trên tập $D$ là tập hợp tất cả các điểm $M(x; f(x))$ trên mặt phẳng tọa độ $O x y$ với mọi $x in D$; trong đó $O$ là gốc tọa độ, $O x$ là trục hoành và $O y$ là trục tung.
 ]
 
+#section[Cách tìm tập xác định $D$ của hàm số]
+
+#note[
+  - Bước 1: Tìm điều kiện xác định để biểu thức $f(x)$ có nghĩa.
+  - Bước 2: Giải các phương trình hoặc bất phương trình điều kiện đó.
+  - Bước 3: Kết luận tập xác định $D$ của hàm số dưới dạng khoảng, nửa khoảng, đoạn.
+]
+
+#example[Tìm tập xác định của các hàm số sau]
+#flexgrid(
+  cols: 2,
+  [1) $y = x^3 - 2x + 1$],
+  [2) $y = dfrac(-1, x + 1) + dfrac(2x, 5 - x)$],
+  [3) $y = dfrac(3 - x, x^2 + 2x + 1)$],
+  [4) $y = 2sqrt(2x - 5) + x$],
+  [5) $y = sqrt(12 - 2x) + sqrt(x + 1)$],
+  [6) $y = dfrac(x^2 + 2x - 5, sqrt(x + 3)) + dfrac(1, x - 5)$],
+)
+
 === Hàm số bậc nhất
 
-#remarkable[
+#note[
   - Hàm số bậc nhất là hàm số có dạng $y = f(x) = a x + b$ với $a eq.not 0$.
   - Tập xác định: $D = RR$.
   - Tập giá trị: $T = RR$.
@@ -203,11 +356,11 @@
   - $a$ được gọi là hệ số góc của đường thẳng; được tính bằng giá trị $tan alpha$ với $alpha$ là góc giữa đường thẳng $y = f(x)$ và trục hoành $O x$.
 ]
 
-Chú ý:
+#remark()
 1. Hai đường thẳng song song có cùng hệ số góc. Hai đường thẳng vuông góc có tích hệ số góc bằng -1.
 2. Khi $a = 0$, hàm số bậc nhất trở thành hàm hằng $y = b$ có ĐTHS là một đường thẳng vuông góc với trục tung $O y$.
 
-#example[Ví dụ 1] Đồ thị hàm số $y = x + 1$
+#example[Đồ thị hàm số $y = x + 1$]
 
 #let f1(x) = calc.sin(x)
 #let fn = (
@@ -259,15 +412,15 @@ Chú ý:
   })
 ]
 
-#remarkable[
+#note[
   Cách vẽ đồ thị hàm số bậc nhất $y = a x + b$ với $a eq.not 0$
   - Nếu $b eq.not 0$: Đồ thị hàm số là đường thẳng đi qua hai điểm $A(0; b)$ và $B(dfrac(-b, a);0)$.
   - Nếu $b = 0$: Đồ thị hàm số là đường thẳng đi qua gốc tọa độ $O(0;0)$ và điểm $A(1; a)$.
 ]
 
-Nhận xét: Hệ số góc $a > 0$ thì đường thẳng hướng lên trên; ngược lại, $a < 0$ thì đường thẳng hướng xuống.
+#remark() Hệ số góc $a > 0$ thì đường thẳng hướng lên trên; ngược lại, $a < 0$ thì đường thẳng hướng xuống.
 
-#example[Ví dụ 2] Vẽ đồ thị của các hàm số sau
+#example[Vẽ đồ thị của các hàm số sau]
 
 #flexgrid(
   cols: 3,
@@ -276,13 +429,13 @@ Nhận xét: Hệ số góc $a > 0$ thì đường thẳng hướng lên trên; 
   [3) $y = 3x$],
 )
 
-#remarkable[
+#note[
   Có thể tìm công thức hàm số bậc nhất bằng cách xác định hai hệ số a và b nếu biết một trong các điều kiện sau:
   - Tọa độ của ít nhất hai điểm nằm trên đường thẳng ĐTHS.
   - Góc giữa đường thẳng ĐTHS và trục hoành $O x$ và một điểm nằm trên đường thẳng ĐTHS.
 ]
 
-#example[Ví dụ 3] Xác định công thức của các hàm số có đồ thị được cho bên dưới
+#example[Xác định công thức của các hàm số có đồ thị được cho bên dưới]
 
 #flexgrid(
   cols: (1fr, 1fr),
@@ -385,7 +538,7 @@ Nhận xét: Hệ số góc $a > 0$ thì đường thẳng hướng lên trên; 
 
 === Hàm số bậc hai
 
-#remarkable[
+#note[
   - Hàm số bậc hai có dạng $y = f(x) = a x^2 + b x + c$ với $a eq.not 0$.
   - Tập xác định: $D = RR$
   - Đồ thị hàm số bậc hai là một đường parabol có đỉnh là điểm $I(dfrac(-b, 2a); dfrac(-Delta, 4a))$, có trục đối xứng là đường thẳng $x = dfrac(-b, 2a)$. Parabol này quay bề lõm lên trên nếu $a > 0$, xuống dưới nếu $a < 0$.
@@ -530,13 +683,13 @@ Nhận xét: Hệ số góc $a > 0$ thì đường thẳng hướng lên trên; 
 ]
 
 Sự đồng biến và nghịch biến của hàm số bậc hai
-#remarkable[
+#note[
   - Nếu $a > 0$ hàm số nghịch biến trên $(-infinity; dfrac(-b, 2a))$ và đồng biến trên $(dfrac(-b, 2a); +infinity)$.
 
   - Nếu $a < 0$ hàm số đồng biến trên $(-infinity; dfrac(-b, 2a))$ và nghịch biến trên $(dfrac(-b, 2a); +infinity)$.
 ]
 
-#example[Ví dụ 4] Vẽ đồ thị hàm số của các đường parabol sau và cho biết các khoảng đồng biến và nghịch biến của chúng
+#example[Vẽ đồ thị hàm số của các đường parabol sau và cho biết các khoảng đồng biến và nghịch biến của chúng]
 
 #flexgrid(
   cols: 4,
@@ -547,9 +700,9 @@ Sự đồng biến và nghịch biến của hàm số bậc hai
   [4) $y = -x^2 - x + 2$],
 )
 
-Cách xác định công thức hàm số bậc hai $y = a x^2 + b x + c$ từ ĐTHS
+#section[Cách xác định công thức hàm số bậc hai $y = a x^2 + b x + c$ từ ĐTHS]
 
-#remarkable[
+#note[
   Có thể nội suy công thức hàm số bậc hai từ ĐTHS trong các trường hợp khi biết:
 
   - Hàm số đi qua 3 điểm phân biệt.
@@ -559,7 +712,7 @@ Cách xác định công thức hàm số bậc hai $y = a x^2 + b x + c$ từ �
   - Hàm số có đỉnh tại $I(dfrac(-b, 2a); dfrac(-Delta, 4a))$ và đi qua một điểm phân biệt khác.
 ]
 
-#example[Ví dụ 5] Xác định các hàm số bậc hai biết:
+#example[Xác định các hàm số bậc hai biết]
 #flexgrid(
   cols: 1,
   row-gap: 1em,
