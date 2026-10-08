@@ -11,6 +11,7 @@
   text-muted: luma(120),
   text-white: rgb(255, 255, 255, 5%),
   cover-bg: rgb("#0F172A"),
+  shadow: luma(150),
 )
 
 // FUNCTIONS
@@ -31,6 +32,7 @@
   box(baseline: 15%)[#lucide-icon("layout-dashboard", fill: colors.primary, size: 0.9em)]
   h(4pt)
   text(fill: colors.primary, weight: "semibold", body)
+  v(-1em)
 }
 
 #let remark(body: none) = {
@@ -48,9 +50,9 @@
   h(2pt)
 }
 
-#let example_counter = counter("example")
+#let example-counter = counter("example")
 #let example(title: none, body) = {
-  example_counter.step()
+  example-counter.step()
   v(0.25em)
   box(
     stroke: 1pt + colors.primary, // Viền cam mỏng
@@ -61,7 +63,28 @@
   )[
     // Chữ bên trong nhỏ hơn một chút và in đậm
     #text(fill: colors.primary, size: 0.9em, weight: "semibold", context [
-      Ví dụ #example_counter.display()
+      Ví dụ #example-counter.display()
+      #if title != none [#title]
+    ])
+  ]
+  h(6pt)
+  [#body]
+}
+
+#let ex-counter = counter("ex")
+#let ex(title: none, body) = {
+  ex-counter.step()
+  v(0.25em)
+  box(
+    radius: 2pt, // Bo góc nhỏ
+    inset: (x: 5pt, y: 0pt), // Lề chữ bên trong (ngang)
+    outset: (y: 5pt), // Mở rộng nền theo chiều dọc mà không đẩy giãn khoảng cách dòng
+    baseline: 0%, // Căn chỉnh chân chữ cho bằng với văn bản bên ngoài
+    fill: colors.primary,
+  )[
+    // Chữ bên trong nhỏ hơn một chút và in đậm
+    #text(fill: white, size: 0.9em, weight: "semibold", context [
+      P#ex-counter.display()
       #if title != none [#title]
     ])
   ]
@@ -89,7 +112,7 @@
 #let dfrac(a, b) = math.display(math.frac(a, b))
 
 // COVER
-#let book_cover(
+#let book-cover(
   title: "TOÁN 12",
   subtitle: "Ôn luyện cho kì thi tốt nghiệp THPT 2027",
   author: "Ngô Đăng Minh",
@@ -111,11 +134,11 @@
   block(width: 100%, height: 100%, fill: bg-color)[
 
     // 1. Dải màu nhấn ở mép trên (Accent bar)
-    #place(top, rect(width: 100%, height: 15pt, fill: theme-color))
+    #place(top, rect(width: 100%, height: 15pt, fill: colors.primary))
 
     // 2. Logo / Tag nhà xuất bản ở góc trên bên phải
     #place(top + right, dx: -2cm, dy: 2cm)[
-      #block(fill: theme-color, inset: (x: 12pt, y: 8pt), radius: 2pt)[
+      #block(fill: colors.primary, inset: (x: 12pt, y: 8pt), radius: 2pt)[
         #text(fill: white, weight: "bold", size: 14pt, publisher)
       ]
     ]
@@ -128,8 +151,8 @@
     // Đa giác (Mô phỏng hình học không gian)
     #place(center + horizon, dy: -2cm, dx: 3cm)[
       #polygon(
-        fill: theme-color.transparentize(85%),
-        stroke: 1.5pt + theme-color.transparentize(50%),
+        fill: colors.primary.transparentize(85%),
+        stroke: 1.5pt + colors.primary.transparentize(50%),
         (0cm, 0cm),
         (5cm, 3cm),
         (2cm, 7cm),
@@ -156,7 +179,7 @@
 
         #v(1.5cm)
         // Đường kẻ ngang đặc trưng của Packt
-        #line(length: 6cm, stroke: 4pt + theme-color)
+        #line(length: 6cm, stroke: 4pt + colors.primary)
       ]
     ]
 
@@ -166,6 +189,47 @@
       #v(-0.5em)
       #text(size: 18pt, weight: "bold", fill: white)[#author]
     ]
+  ]
+}
+
+// ==========================================
+// HÀM: TIÊU ĐỀ BÀI HỌC (STYLE 3D RIBBON)
+// ==========================================
+#let lesson-title(
+  id: "01",
+  title: "TIÊU ĐỀ",
+) = {
+  // Tạo một khối chiếm 100% chiều ngang khả dụng (đã trừ margin)
+  block(
+    width: 100%,
+    fill: colors.primary.transparentize(85%), // Nền màu hồng rất nhạt
+    stroke: (
+      left: 8pt + colors.primary, // Viền trái rất dày tạo điểm nhấn
+      rest: 0.5pt + colors.primary.transparentize(50%), // Các viền còn lại mỏng
+    ),
+    radius: 4pt, // Bo tròn nhẹ 2 góc bên phải
+    inset: (x: 1.5em, y: 1.2em), // Khoảng cách từ viền vào chữ
+  )[
+    // Dùng Grid để chia cột: Cột 1 chứa Số, Cột 2 chứa Tên bài
+    #grid(
+      columns: (auto, 1fr),
+      // Cột 1 tự ép lại vừa chữ, cột 2 dãn hết phần còn lại
+      gutter: 1em,
+      // Khoảng cách giữa cục Số và Tên bài
+      align: (center + horizon, left + horizon),
+
+      // Ô thứ 1: Cục badge chứa số thứ tự bài học
+      block(
+        fill: colors.primary,
+        inset: (x: 8pt, y: 8pt),
+        radius: 4pt,
+      )[
+        #text(fill: white, size: 18pt, weight: "semibold", id)
+      ],
+
+      // Ô thứ 2: Tên bài học
+      text(fill: colors.primary, size: 18pt, weight: "black", title),
+    )
   ]
 }
 
@@ -186,7 +250,7 @@
       let page_num = counter(page).get().first()
       let is_odd = calc.odd(page_num) // Kiểm tra trang lẻ
 
-      let header_text = text(10pt, fill: colors.primary)[#title]
+      let header_text = text(10pt, fill: colors.primary, weight: "semibold")[#title]
       let divider = line(length: 100%, stroke: 0.5pt + colors.primary)
 
       if is_odd {
@@ -241,7 +305,7 @@
   show heading: it => {
     pad(
       top: 1em,
-      bottom: 0.5em,
+      bottom: 0.25em,
       text(fill: colors.primary, it),
     )
   }
@@ -250,16 +314,6 @@
   set math.cases(gap: 1em)
 
   set list(marker: box(baseline: 15%)[#lucide-icon("chevron-right", fill: colors.primary, size: 0.9em)])
-  //
-  // pagebreak()
-  //
-  // outline(
-  //   title: text(weight: "bold", size: 18pt, "Mục lục"),
-  //   depth: 3,
-  //   indent: 1em,
-  // )
-
-  pagebreak()
 
   counter(page).update(1)
 

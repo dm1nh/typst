@@ -1,8 +1,13 @@
-#import "/template.typ": cetz, colors, dfrac, example, flexgrid, note, plot, remark, section, template
+#import "/template.typ": cetz, colors, dfrac, ex, example, flexgrid, lesson-title, note, plot, remark, section, template
 
 #show: template.with(
-  title: "Nền tảng về Đại số và biến đổi đại số",
+  title: "Nền tảng về Đại số và Giải tích",
   date: "05/10/2026",
+)
+
+#lesson-title(
+  id: "T12A-X01",
+  title: "NỀN TẢNG VỀ ĐẠI SỐ VÀ GIẢI TÍCH",
 )
 
 = KIẾN THỨC NỀN TẢNG
@@ -52,8 +57,6 @@
   - Bậc của đa thức là bậc của hạng tử cao nhất sau khi thu gọn; được tính bằng tổng số mũ lớn nhất của các biến trong hạng tử đó.
   - Đa thức một biến là đa thức chỉ chứa một biến duy nhất (ví dụ như biến $x$).
 ]
-
-#pagebreak()
 
 #example[Trong các biểu thức dưới đây, biểu thức nào là đa thức và cho biết bậc của chúng?]
 
@@ -153,6 +156,19 @@
   [6) $dfrac(x, x - 3) - dfrac(2x + 1, x + 3) = -2$],
 )
 
+#section[Định lí Viète]
+
+#note[
+  Nếu phương trình bậc hai $a x^2 + b x + c = 0$ với $a eq.not 0$ có hai nghiệm phân biệt $x_1$ và $x_2$ thì ta được:
+  $
+    display(cases(S = x_1 + x_2 = dfrac(-b, a), P = x_1 x_2 = dfrac(c, a)))
+  $
+  Từ đó ta có thể kết luận:
+  - Nếu S > 0 và P > 0: Phương trình có hai nghiệm dương phân biệt.
+  - Nếu S < 0 và P > 0: Phương trình có hai nghiệm âm phân biệt.
+  - Nếu P < 0: Phương trình có hai nghiệm trái dấu.
+]
+
 === Hệ phương trình bậc nhất hai ẩn và ba ẩn
 
 #example[Giải các hệ phương trình sau]
@@ -191,6 +207,12 @@
   - Người ta thường minh họa tập hợp bằng sơ đồ Venn.
   - Hai tập hợp bằng nhau có cùng phần tử, kí hiệu $A = B$.
 ]
+
+#remark()
+Các tập hợp số thường gặp:
+- Tập hợp các số tự nhiên, kí hiệu $NN = {0; 1; 2; 3; 4; ...}$.
+- Tập hợp các số nguyên, kí hiệu $ZZ = {...;-3; -2; -1; 0; 1; 2; 3; ...}$.
+- Tập hợp các số thực, kí hiệu $RR$.
 
 #example[Cho hai tập hợp $A$ gồm các số nguyên lớn hơn $-3$ và nhỏ hơn $5$. Viết tập $A$ dưới hai dạng.]
 
@@ -301,7 +323,7 @@
   ]
 ]
 
-== Các phép toán trong tập hợp
+=== Các phép toán trong tập hợp
 
 #note[
   - Tập hợp các phần tử thuộc cả hai tập $A$ và $B$ được gọi là *giao* của $A$ và $B$, kí hiệu $A inter B$.
@@ -313,7 +335,7 @@
 #example[Tìm các tập hợp $A union B$, $A inter B$, $A \\ B$, $B \\ A$, $C_RR A$ của hai tập hợp $A$ và $B$]
 #flexgrid(
   [1) $A = [-2, 3)$ và $B = (-3, +infinity)$],
-  [2) $A = {x in RR | x < 1}$ và $B = {x in RR | x >= -3}$]
+  [2) $A = {x in RR | x < 1}$ và $B = {x in RR | x >= -3}$],
 )
 
 == Hàm số cơ bản
@@ -720,4 +742,243 @@ Sự đồng biến và nghịch biến của hàm số bậc hai
   [b) Đường parabol có đỉnh tại $I(1; -1)$ và đi qua điểm $M(2; 1)$.],
   [c) Đường parabol cắt trục hoành tại hai điểm có hoành độ $x_1 = 1$, $x_2 = 3$ và đi qua điểm $M(2; 2)$.],
   [d) Đường parabol có trục đối xứng $x = -2$ và đi qua hai điểm $A(-1; 0)$, $B(0; 3)$.],
+)
+
+= BÀI TẬP RÈN LUYỆN
+
+#ex[Sử dụng hằng đẳng thức, khai triển các biểu thức sau]
+#flexgrid(
+  cols: 5,
+  col-gap: 3em,
+  [1) $x^2 - 9$],
+  [2) $9x^2 - 25$],
+  [3) $4x^2 - y^2$],
+  [4) $(x + 5)^2$],
+  [5) $(3x - 2)^2$],
+  [6) $(2x + 3y)^2$],
+  [7) $(x - 4)^3$],
+  [8) $(3x + 1)^3$],
+  [9) $x^3 + 27$],
+  [10) $27x^3 - 8$],
+)
+
+// Bài tập tương tự Ví dụ 2: Biểu thức, đa thức
+#ex[Trong các biểu thức dưới đây, biểu thức nào là đa thức và cho biết bậc của chúng?]
+#flexgrid(
+  cols: 3,
+  [1) $2x^4 - x^2 + 5x - 3$],
+  [2) $3x^2y - x y^2 + 5x y - 1$],
+  [3) $dfrac(2, x - 1) + 3x^2 - x$],
+  [4) $sqrt(2x + 1) - x^2 + 4$],
+  [5) $5 - 2y + 4y^2 - y^4$],
+  [6) $2x^3 - 3x sqrt(y) + 5$],
+)
+
+// Bài tập tương tự Ví dụ 3: Thu gọn biểu thức
+#ex[Thu gọn các biểu thức sau]
+#flexgrid(
+  cols: 2,
+  [1) $2x^2 + 3x - x^2 + 4x - 1$],
+  [2) $3(x^2 - 2) - 2(5 - 2x) + x$],
+  [3) $(x - 2) dot x - (x + 2)^2$],
+  [4) $2x y^2 - x y - 3x y^2 + 4x y - 2x^2y + 3$],
+  [5) $(3x - 1)(3x + 1) - (2x - 5)^2$],
+  [6) $(x + 2)^3 - (x + 1)(x^2 - x + 1)$],
+  [7) $dfrac(x + 2, x + 1) + dfrac(x - 1, x - 2) - 2$],
+  [8) $2 - dfrac(3, (x - 1)^2)$],
+)
+
+// Bài tập tương tự Ví dụ 5: Điều kiện xác định
+#ex[Tìm điều kiện xác định của các biểu thức sau]
+#flexgrid(
+  cols: 3,
+  [1) $2x^3 - 5x^2 + x - 7$],
+  [2) $dfrac(3x + 1, 2x - 4)$],
+  [3) $dfrac(x^2 - 3x + 2, 5x + 2)$],
+  [4) $sqrt(2x - 6) + 5$],
+  [5) $sqrt(x - 1) - sqrt(8 - 4x)$],
+  [6) $dfrac(5, sqrt(2x + 4)) - sqrt(3x - 2)$],
+)
+
+// Bài tập tương tự Ví dụ 6: Phương trình bậc nhất một ẩn
+#ex[Giải các phương trình sau]
+#flexgrid(
+  row-gap: 2em,
+  [1) $3x - 12 = 0$],
+  [2) $2x - 1 = 5x + 8$],
+  [3) $x^2 + 3x - 2 = x(x + 4)$],
+  [4) $dfrac(2, x - 3) + dfrac(x, x + 2) = 1$],
+)
+
+// Bài tập tương tự Ví dụ 7: Phương trình bậc hai một ẩn
+#ex[Giải các phương trình sau]
+#flexgrid(
+  cols: 3,
+  [1) $x^2 - 5x + 6 = 0$],
+  [2) $9x^2 - 6x + 1 = 0$],
+  [3) $3x^2 - 8x + 4 = 0$],
+  [4) $x^2 - 4x - 3 = 0$],
+  [5) $dfrac(3x, x - 1) - dfrac(x + 1, x - 2) = 2$],
+  [6) $dfrac(2x, x + 2) - dfrac(x - 1, x - 3) = -1$],
+)
+
+// Bài tập tương tự Ví dụ 8: Hệ phương trình
+#ex[Giải các hệ phương trình sau]
+#flexgrid(
+  [1) $display(cases(3x + 2y = 7, 2x - y = 0))$],
+  [2) $display(cases(x - y + 2z = 5, 2x + y - z = -1, x + y + z = 4))$],
+)
+
+// Bài tập tương tự Ví dụ 9: Bất phương trình
+#ex[Giải các bất phương trình sau]
+#flexgrid(
+  [1) $-2x + 4 > 3x - 1$],
+  [2) $dfrac(2x - 1, 2) + dfrac(x + 2, 5) >= 3$],
+)
+
+// Bài tập tương tự Ví dụ 10: Tập hợp
+#ex[Cho tập hợp $A$ gồm các số nguyên lớn hơn hoặc bằng $-2$ và nhỏ hơn $4$. Viết tập $A$ dưới hai dạng.]
+
+// Bài tập tương tự Ví dụ 11: Các phép toán trong tập hợp
+#ex[Tìm các tập hợp $A union B$, $A inter B$, $A \\ B$, $B \\ A$, $C_RR A$ của hai tập hợp $A$ và $B$]
+#flexgrid(
+  [1) $A = (-4, 2]$ và $B = [0, +infinity)$],
+  [2) $A = {x in RR | x >= 2}$ và $B = {x in RR | x < 5}$],
+)
+
+// Bài tập tương tự Ví dụ 12: Tìm tập xác định của hàm số
+#ex[Tìm tập xác định của các hàm số sau]
+#flexgrid(
+  cols: 2,
+  [1) $y = 2x^3 + x^2 - 5$],
+  [2) $y = dfrac(2, x - 3) + dfrac(x, 4 + x)$],
+  [3) $y = dfrac(x + 2, x^2 - 4x + 4)$],
+  [4) $y = 3sqrt(3x - 1) - 2x$],
+  [5) $y = sqrt(8 - x) + sqrt(2x + 3)$],
+  [6) $y = dfrac(x^2 - x + 1, sqrt(x - 1)) + dfrac(3, x - 4)$],
+)
+
+// Bài tập tương tự Ví dụ 14: Vẽ đồ thị các hàm số
+#ex[Vẽ đồ thị của các hàm số sau (Bài tập rèn luyện)]
+#flexgrid(
+  cols: 3,
+  [1) $y = x - 3$],
+  [2) $y = -3x + 1$],
+  [3) $y = -2x$],
+)
+
+// Bài tập tương tự Ví dụ 15: Xác định công thức hàm số từ đồ thị
+#ex[Xác định công thức của các hàm số có đồ thị được cho bên dưới]
+#flexgrid(
+  cols: (1fr, 1fr),
+  alignment: top,
+  [
+    1)
+    #cetz.canvas(length: 0.8cm, {
+      import cetz.draw: *
+
+      plot.plot(
+        size: (5, 8),
+        axis-style: "school-book",
+        x-label: [$x$],
+        y-label: [$y$],
+        x-tick-step: none,
+        y-tick-step: none,
+        x-ticks: (-2, 2),
+        y-ticks: (-1, 3),
+
+        x-min: -3,
+        x-max: 3,
+        y-min: -2,
+        y-max: 5,
+        {
+          plot.add(
+            domain: (-3, 3),
+            style: (stroke: colors.primary + 2pt),
+            x => x + 1,
+          )
+
+          plot.add(
+            ((-2, -1), (2, 3)),
+            style: (stroke: none),
+            mark: "o",
+            mark-style: (fill: black, stroke: black),
+            mark-size: 0.12,
+          )
+
+          plot.add(
+            ((-2, 0), (-2, -1), (0, -1)),
+            style: (stroke: (dash: "dashed", paint: gray)),
+          )
+          plot.add(
+            ((2, 0), (2, 3), (0, 3)),
+            style: (stroke: (dash: "dashed", paint: gray)),
+          )
+        },
+      )
+    })
+  ],
+  [
+    2)
+    #cetz.canvas(length: 0.8cm, {
+      import cetz.draw: *
+      import cetz.angle: *
+
+      plot.plot(
+        size: (6, 6),
+        axis-style: "school-book",
+        x-label: [$x$],
+        y-label: [$y$],
+        x-tick-step: none,
+        y-tick-step: none,
+        y-ticks: (2,),
+
+        x-min: -2,
+        x-max: 4,
+        y-min: -2,
+        y-max: 4,
+        {
+          plot.add(
+            domain: (-4, 4),
+            style: (stroke: colors.primary + 2pt),
+            x => x + 2,
+          )
+
+          plot.add(
+            ((0, 2),),
+            style: (stroke: none),
+            mark: "o",
+            mark-style: (fill: black, stroke: black),
+            mark-size: 0.12,
+          )
+
+          plot.annotate(
+            angle((-2, 0), (0, 0), (0, 2), radius: 1em, label-radius: 2em, label: $45 degree$),
+          )
+        },
+      )
+    })
+  ],
+)
+
+// Bài tập tương tự Ví dụ 16: Vẽ đồ thị Parabol và xét biến thiên
+#ex[Vẽ đồ thị hàm số của các đường parabol sau và cho biết các khoảng đồng biến và nghịch biến của chúng]
+#flexgrid(
+  cols: 4,
+  col-gap: 2em,
+  [1) $y = x^2 - 4x + 3$],
+  [2) $y = -x^2 + 2x + 3$],
+  [3) $y = 2x^2 - 2$],
+  [4) $y = -2x^2 + 4x$],
+)
+
+// Bài tập tương tự Ví dụ 17: Xác định hàm số bậc hai
+#ex[Xác định các hàm số bậc hai biết]
+#flexgrid(
+  cols: 1,
+  row-gap: 1em,
+  [a) Đường parabol đi qua 3 điểm $A(0; 1)$, $B(1; -1)$ và $C(2; 3)$.],
+  [b) Đường parabol có đỉnh tại $I(-1; 2)$ và đi qua điểm $M(1; -2)$.],
+  [c) Đường parabol cắt trục hoành tại hai điểm có hoành độ $x_1 = -1$, $x_2 = 2$ và đi qua điểm $M(1; -4)$.],
+  [d) Đường parabol có trục đối xứng $x = 1$ và đi qua hai điểm $A(0; 3)$, $B(3; 0)$.],
 )
